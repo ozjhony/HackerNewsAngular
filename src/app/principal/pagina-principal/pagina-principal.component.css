@@ -10,15 +10,11 @@
  
 }
 
-.botonesStyle{
-    text-align: center;
-}
-
 
 h1{
    font-size: 2em; 
    position: absolute;
-   left:10%;
+   left: 7%;
 }
 
 .seleccion{

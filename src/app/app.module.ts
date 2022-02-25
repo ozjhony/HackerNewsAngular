@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { PaginaPrincipalComponent } from './principal/pagina-principal/pagina-principal.component';
 import { VistasComponent } from './principal/vistas/vistas.component';
 import { HttpClientModule } from '@angular/common/http';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

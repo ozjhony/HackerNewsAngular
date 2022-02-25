@@ -1,24 +1,48 @@
+<div class="botonesStyle">
+  <button type="button" class="btn btn-outline-primary">All</button>
+  <button type="button" class="btn btn-outline-primary">My faves</button>
+</div>
+
+<br>
+<br>
+
+<div class="form-group">
+  <select (change)="lenguaje($event)">
+    <option value="">Escoja una:</option>
+    <option value="Angular">Angular</option>
+    <option value="React">React</option>
+    <option value="Vuejs">Vuejs</option>
+  </select>
+</div>
+
+<br>
+
 
 
 <div class="row">
-  <div *ngFor="let p of listaNoticia" class="col-6">
+  <div *ngFor="let p of listaNoticia | paginate: { itemsPerPage: 8, currentPage: w }" class="col-6">
+    <div class="division">
+      <a href="{{p.url}}">
+        <div class="card" style="width: 25rem;" class="cardStyle">
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">{{p.created_at}}</h6>
+            <h5 class="card-title">{{p.title}}</h5>
+          </div>
 
-    <div class="card" style="width: 25rem;" class="cardStyle">
-      <div class="card-body">
-        <h6 class="card-subtitle mb-2 text-muted">{{p.created_at}}</h6>
-        <h5 class="card-title">{{p.title}}</h5>
+        </div>
+      </a>
+      <div class="cora">
+        <img src="https://www.pngitem.com/pimgs/m/62-625292_corazn-rojo-silueta-forma-sombra-silueta-de-corazn.png"
+          class="likes" />
       </div>
-    </div>
-  </div>
-</div>
 
-<!--
-<ul>
-  <li *ngFor="let links of listaNoticia">
-    <h1>{{links.author}}</h1>
-    <h2>{{links.title}}</h2>
-    <h3>{{links.created_at}}</h3>
-    <h3>{{links.points}}</h3>
-  </li>
-</ul>
--->
+    </div>
+     <br>
+  </div>
+
+
+</div>
+<br>
+<br>
+<br>
+<pagination-controls (pageChange)="w = $event"></pagination-controls>

@@ -12,20 +12,33 @@ import { tap } from 'rxjs/operators';
 export class VistasComponent implements OnInit {
    listaNoticia: Noticia[];
    Onews:Onews;
+   w:number=1;
+   lista:any[];
+   Dato:string;
 
   constructor(private hakerService: HackerNewsApiService) {
      
    }
 
+   lenguaje(event: any){
+     this.busqueda(event.target.value);
+     this.GuardarLenguajeLocalStorage(event.target.value);
+
+   }
+
+
+
 
   ngOnInit(): void {
+    this.Dato=this.obtenerDatosLocalStorage();
     this.getAllOnews();
-    this.busqueda();
+    this.busqueda(this.Dato);
+    
 
   }
 
-  busqueda():void{
-    this.hakerService.busqueda('t1','t2').pipe(
+  busqueda(term1:String):void{
+    this.hakerService.busqueda(term1,'t2').pipe(
 
       tap(data =>
         this.listaNoticia=data
@@ -41,4 +54,15 @@ export class VistasComponent implements OnInit {
        }
        
     )}
+
+    GuardarLenguajeLocalStorage(termino:string){
+     localStorage.setItem("Lenguaje",termino);
+    }
+
+    obtenerDatosLocalStorage(){
+      
+      return localStorage.getItem("Lenguaje")
+      
+    }
+    
 }

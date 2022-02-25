@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Onews } from 'src/app/modelos/Onews.modelo';
-import { prueba } from 'src/app/modelos/prueba.modelo';
+import { Noticia } from 'src/app/modelos/noticia.modelo';
 import { HackerNewsApiService } from 'src/app/services/hacker-news-api.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-vistas',
@@ -9,33 +10,32 @@ import { HackerNewsApiService } from 'src/app/services/hacker-news-api.service';
   styleUrls: ['./vistas.component.css']
 })
 export class VistasComponent implements OnInit {
-   listp:prueba[];
+   listaNoticia: Noticia[];
    Onews:Onews;
 
   constructor(private hakerService: HackerNewsApiService) {
      
-    console.log("datos de la lista" + ' ' + this.listp)
    }
 
 
   ngOnInit(): void {
-    this.getAllPrueba();
     this.getAllOnews();
+    this.busqueda();
 
   }
-  
-  getAllPrueba(){
-    this.hakerService.getPrueba().subscribe(
-      data=>{
-        this.listp=data
-        console.log("hola");
-       }
-       
-    )
-   }
+
+  busqueda():void{
+    this.hakerService.busqueda('t1','t2').pipe(
+
+      tap(data =>
+        this.listaNoticia=data
+        )
+      ).subscribe();
+  }
+
 
    getAllOnews(){
-    this.hakerService.getONews().subscribe (
+    this.hakerService.getONews('t1','t2').subscribe (
       data=>{
         this.Onews=data;  
        }

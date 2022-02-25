@@ -2,9 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatosGenerales } from '../config/datos.generales';
 import { Observable } from 'rxjs';
-import { prueba } from '../modelos/prueba.modelo';
+import {Noticia } from '../modelos/noticia.modelo';
 import { Onews } from '../modelos/Onews.modelo';
+import { pluck } from 'rxjs/operators';
 
+interface Respuesta{
+  hits:Noticia[];
+
+}
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +22,14 @@ export class HackerNewsApiService {
   }
 
 
-  getPrueba(): Observable<prueba[]> { 
-    return this.http.get<prueba[]>(`https://jsonplaceholder.typicode.com/posts`);
-  }
+  //getPrueba(): Observable<prueba[]> { return this.http.get<prueba[]>(`https://jsonplaceholder.typicode.com/posts`);}
 
-  getONews(): Observable<Onews> {
+  getONews(term1:String, term2:String): Observable<Onews> {
      return this.http.get<Onews>(`http://hn.algolia.com/api/v1/search`);
   }
+
+  busqueda(term1:String, term2:String):Observable<Noticia[]>{
+
+    return this.http.get<Respuesta>('http://hn.algolia.com/api/v1/search?query=foo&tags=story').pipe(pluck('hits'));
+}
 }

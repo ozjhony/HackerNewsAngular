@@ -1,14 +1,24 @@
 
 
+<div class="row">
+  <div *ngFor="let p of listaNoticia" class="col-6">
 
-     <h1>{{Onews.nbPages}}</h1>
-     <h1>{{Onews.hitsPerPage}}</h1>
+    <div class="card" style="width: 25rem;" class="cardStyle">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">{{p.created_at}}</h6>
+        <h5 class="card-title">{{p.title}}</h5>
+      </div>
+    </div>
+  </div>
+</div>
 
-     <ul>
-      <li *ngFor="let links of Onews.hits">
-        <h1>{{links.author}}</h1>
-        <h2>{{links.title}}</h2>
-        <h3>{{links.created_at}}</h3>
-        <h3>{{links.points}}</h3>
-      </li>
-    </ul>
+<!--
+<ul>
+  <li *ngFor="let links of listaNoticia">
+    <h1>{{links.author}}</h1>
+    <h2>{{links.title}}</h2>
+    <h3>{{links.created_at}}</h3>
+    <h3>{{links.points}}</h3>
+  </li>
+</ul>
+-->

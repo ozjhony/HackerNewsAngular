@@ -6,6 +6,7 @@ import { PaginaPrincipalComponent } from './principal/pagina-principal/pagina-pr
 import { VistasComponent } from './principal/vistas/vistas.component';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,

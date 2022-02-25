@@ -1,1 +1,14 @@
-<p>vistas works!</p>
+
+
+
+     <h1>{{Onews.nbPages}}</h1>
+     <h1>{{Onews.hitsPerPage}}</h1>
+
+     <ul>
+      <li *ngFor="let links of Onews.hits">
+        <h1>{{links.author}}</h1>
+        <h2>{{links.title}}</h2>
+        <h3>{{links.created_at}}</h3>
+        <h3>{{links.points}}</h3>
+      </li>
+    </ul>
